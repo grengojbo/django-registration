@@ -3,6 +3,7 @@
 docs/_build
 .hg*
 build
+.idea/
 dist
 twython.egg-info
 *.swp

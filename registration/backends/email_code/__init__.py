@@ -7,7 +7,10 @@ from registration.forms import EmailCodeRegistrationForm
 from registration.models import RegistrationProfile
 
 from utils import generate_unique_username
-from signup_codes.models import SignupCode
+try:
+    from pinax.apps.signup_codes.models import SignupCode
+except ImportError:
+    pass
 
 
 class EmailCodeBackend(object):
@@ -87,8 +90,11 @@ class EmailCodeBackend(object):
                                      request=request)
 
         signup_code = kwargs["signup_code"]
-        if type(signup_code) == type(SignupCode()):
-            signup_code.use(new_user)
+        try:
+            if type(signup_code) == type(SignupCode()):
+                signup_code.use(new_user)
+        except e:
+            pass
 
         return new_user
 

@@ -9,9 +9,11 @@ from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-
-from signup_codes.models import check_signup_code #SignupCode
-from programs.middleware import get_current_program
+try:
+    from pinax.apps.signup_codes.models import check_signup_code #SignupCode
+except ImportError:
+    pass
+#from programs.middleware import get_current_program
 
 
 # I put this on all required fields, because it's easier to pick up
@@ -198,10 +200,7 @@ class EmailCodeRegistrationForm(forms.Form):
         super(EmailCodeRegistrationForm, self).__init__(*args, **kwargs)
 
         # my hack - no need for sign up code if they are in a program
-        if get_current_program():
-            self.fields['signup_code'] = forms.CharField(max_length=40, required=False, widget=forms.widgets.HiddenInput())
-        else:
-            self.fields['signup_code'] = forms.CharField(max_length=40, required=False, widget=forms.PasswordInput(),
+        self.fields['signup_code'] = forms.CharField(max_length=40, required=False, widget=forms.PasswordInput(),
                                 label=_("Signup Code"))
    
     def clean_email(self):
@@ -219,14 +218,10 @@ class EmailCodeRegistrationForm(forms.Form):
         code = self.cleaned_data.get("signup_code")
 
         # my hack - no need to use signup if they are in a program
-        if get_current_program():
-            signup_code = True
-        else:
+        try:
             signup_code = check_signup_code(code)
-
-        if signup_code:
             return signup_code
-        else:
+        except e:
             raise forms.ValidationError("Signup code was not valid.")
 
 

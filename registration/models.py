@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.utils.hashcompat import sha_constructor
 from django.utils.translation import ugettext_lazy as _
 
-from programs import middleware as tls
+#from programs import middleware as tls
 
 # 5000hands specific coding
 
@@ -252,8 +252,8 @@ class RegistrationProfile(models.Model):
                     'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
                     'site': site, 
                     # additional for 5000hands
-                    'program': tls.get_current_program(),
-                    'program_domain': tls.get_current_domain(),
+                    #'program': tls.get_current_program(),
+                    #'program_domain': tls.get_current_domain(),
                     }
         subject = render_to_string('registration/activation_email_subject.txt',
                                    ctx_dict)

@@ -8,8 +8,10 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from registration.backends import get_backend
+from uni_form.helpers import FormHelper, Submit, Reset, Hidden
 
+from registration.backends import get_backend
+from django.views.decorators.csrf import csrf_exempt
 
 def activate(request, backend,
              template_name='registration/activate.html',

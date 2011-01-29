@@ -1,5 +1,5 @@
 # -*- mode: python; coding: utf-8; -*-
-VERSION = (0, 8, 0, 'alpha', 3)
+VERSION = (0, 8, 1, 'alpha', 0)
 
 def get_version():
     version = '%s.%s' % (VERSION[0], VERSION[1])

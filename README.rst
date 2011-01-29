@@ -9,7 +9,7 @@ other dependencies.
 
 For installation instructions, see the file "INSTALL" in this
 directory; for instructions on how to use this application, and on
-what it provides, see the file "quickstart.rst" in the "docs/"
+what it provides, see the file `quickstart.rst`_ in the "docs/"
 directory.
 
 Installation
@@ -45,6 +45,10 @@ Add to your INSTALLED_APPS in settings.py::
 
 Configurations
 ~~~~~~~~~~~~~~
+`django-uni-form`_
+    ./manage.py syncdb
+    ./manage.py migrate
 
-./manage.py syncdb
-./manage.py migrate
+.. _Django: http://djangoproject.com
+.. _`django-uni-form`: http://github.com/codekoala/django-uni-form
+.. _`quickstart.rst`: http://github.com/grengojbo/django-registration/blob/master/docs/quickstart.rst

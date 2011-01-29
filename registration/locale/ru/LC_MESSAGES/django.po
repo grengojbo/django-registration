@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-29 22:53+0200\n"
-"PO-Revision-Date: 2011-01-29 23:26+0300\n"
+"POT-Creation-Date: 2011-01-30 00:29+0200\n"
+"PO-Revision-Date: 2011-01-30 00:32+0300\n"
 "Last-Translator: Oleg Dolya <oleg.dolya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -114,19 +114,19 @@ msgstr "Эта учетная запись отключена."
 msgid "Your Web browser doesn't appear to have cookies enabled. Cookies are required for logging in."
 msgstr "У вашего браузера не включены cookies. Cookies необходимы для входа."
 
-#: models.py:174
+#: models.py:131
 msgid "user"
 msgstr "пользователь"
 
-#: models.py:175
+#: models.py:132
 msgid "activation key"
 msgstr "ключ активации"
 
-#: models.py:180
+#: models.py:137
 msgid "registration profile"
 msgstr "карточка регистрации"
 
-#: models.py:181
+#: models.py:138
 msgid "registration profiles"
 msgstr "карточки регистрации"
 
@@ -157,6 +157,8 @@ msgid "Sorry, it seems that your activation key is invalid. Please check the url
 msgstr "К сожалению, возможно, что ваш ключ активации является недействительным. Пожалуйста, проверьте URL еще раз."
 
 #: templates/registration/base_registration.html:5
+#: templates/registration/registration_form.html:4
+#: templates/registration/registration_form.html:7
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -213,8 +215,11 @@ msgid "Please enter your old password, for security's sake, and then enter your 
 msgstr "В целях безопасности, пожалуйста, введите свой старый пароль, затем введите новый пароль дважды, чтобы мы могли убедиться в правильности написания."
 
 #: templates/registration/password_change_form.html:15
+#, fuzzy
 msgid "Please correct the error below."
-msgstr "Пожалуйста, исправьте ошибки ниже."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Пожалуйста, исправьте ошибку ниже."
+msgstr[1] "Пожалуйста, исправьте ошибки ниже."
 
 #: templates/registration/password_change_form.html:23
 msgid "Old password"
@@ -301,18 +306,14 @@ msgstr "Код активации отправлен на эл. почту"
 
 #: templates/registration/registration_complete.html:8
 msgid "We will be sending you an email with an activation link which you'll need to click to verify this account. If you choose not to activate your account it will eventually become disabled."
-msgstr "Мы отправим Вам письмо с ссылкой для активации которую нужно нажать, чтобы подтвердить активацию етой учетной записи. Если вы не хотите активировать учетную запись проигнорируйте это письмо."
+msgstr "Мы отправим Вам письмо с сылкой для активации которую нужно нажать, чтобы подтвердить активацию етой учетной записи. Если вы не хотите активировать учетную запись проигнорируйте это письмо."
 
 #: templates/registration/registration_complete.html:9
 msgid "Check your email."
-msgstr "Ваш e-mail адрес."
+msgstr "Проверте вашу почту."
 
-#: templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:7
-msgid "Register"
-msgstr "Регистр"
-
-#: templates/registration/registration_form.html:37
-msgid "Create"
-msgstr "Создать"
+#~ msgid "Register"
+#~ msgstr "Регистр"
+#~ msgid "Create"
+#~ msgstr "Создать"
 

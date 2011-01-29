@@ -22,6 +22,11 @@ Install into your python path using pip or easy_install::
 
     pip install git+git://github.com/grengojbo/django-registration.git
 
+
+Required settings
+~~~~~~~~~~~~~~~~~
+
+
 Add to your INSTALLED_APPS in settings.py::
 
     INSTALLED_APPS = (
@@ -43,11 +48,16 @@ Add to your INSTALLED_APPS in settings.py::
         'django.core.context_processors.request',
     )
 
-Configurations
-~~~~~~~~~~~~~~
-`django-uni-form`_
+
+    ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
+Configurations `django-uni-form`_
+Once you've done this, run
+
     ./manage.py syncdb
     ./manage.py migrate
+
+to install the model used by the default setup.
 
 .. _Django: http://djangoproject.com
 .. _`django-uni-form`: http://github.com/codekoala/django-uni-form

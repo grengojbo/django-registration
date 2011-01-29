@@ -1,3 +1,4 @@
+# -*- mode: python; coding: utf-8; -*-
 """
 Forms and validation code for user registration.
 
@@ -8,6 +9,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm, AuthenticationForm
+from uni_form.helpers import FormHelper, Submit, Reset
 
 try:
     from pinax.apps.signup_codes.models import check_signup_code #SignupCode
@@ -129,7 +132,6 @@ class RegistrationFormNoFreeEmail(RegistrationForm):
             raise forms.ValidationError(_("Registration using free email addresses is prohibited. Please supply a different email address."))
         return self.cleaned_data['email']
 
-
 class EmailRegistrationForm(forms.Form):
     """
     Form for registering a new user account.
@@ -238,7 +240,20 @@ class EmailCodeRegistrationForm(forms.Form):
                 raise forms.ValidationError(_("The two password fields didn't match."))
         return self.cleaned_data
 
+class PasswordResetFormRegistration(PasswordResetForm):
+    helper = FormHelper()
+    submit = Submit('passreset', _('Reset my password'))
+    helper.add_input(submit)
 
+class SetPasswordFormRegistration(SetPasswordForm):
+    helper = FormHelper()
+    submit = Submit('passchenge', _('Change my password'))
+    helper.add_input(submit)
+
+class AuthenticationFormRegistration(AuthenticationForm):
+    helper = FormHelper()
+    submit = Submit('submit', _('Log in'))
+    helper.add_input(submit)
 
 class EmailAuthenticationForm(forms.Form):
     """
@@ -248,6 +263,9 @@ class EmailAuthenticationForm(forms.Form):
     """
     email = forms.EmailField(label=_("Email"), max_length=255)
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    helper = FormHelper()
+    submit = Submit('submit', _('Log in'))
+    helper.add_input(submit)
 
     def __init__(self, request=None, *args, **kwargs):
         """

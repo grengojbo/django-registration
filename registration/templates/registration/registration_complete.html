@@ -4,8 +4,7 @@
 {% block title %}{% trans 'Activation email sent' %}{% endblock %}
 
 {% block content %}
-	<h2>{% trans 'Activation email sent' %}</h2>
-
-	<p>{% blocktrans %}An activation email has been sent.  Please check your email and click on the link to activate your account.{% endblocktrans %}</p>
-
+<h2>{% trans "Activation email sent" %}</h2>
+<p>{% trans "We will be sending you an email with an activation link which you'll need to click to verify this account. If you choose not to activate your account it will eventually become disabled." %}</p>
+<p>{% trans "Check your email." %}</p>
 {% endblock %}

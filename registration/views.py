@@ -1,3 +1,4 @@
+# -*- mode: python; coding: utf-8; -*-
 """
 Views which allow users to create and activate accounts.
 
@@ -7,6 +8,7 @@ Views which allow users to create and activate accounts.
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.translation import ugettext_lazy as _
 
 from uni_form.helpers import FormHelper, Submit, Reset, Hidden
 
@@ -93,7 +95,7 @@ def activate(request, backend,
                               kwargs,
                               context_instance=context)
 
-
+@csrf_exempt
 def register(request, backend, success_url=None, form_class=None,
              disallowed_url='registration_disallowed',
              template_name='registration/registration_form.html',
@@ -194,7 +196,13 @@ def register(request, backend, success_url=None, form_class=None,
                 return redirect(success_url)
     else:
         form = form_class()
-    
+
+    # create a formHelper
+    #helper = FormHelper()
+    #submit = Submit('enter','enter some data')
+    #helper.add_input(submit)
+    title = _(u'Registered')
+
     if extra_context is None:
         extra_context = {}
     context = RequestContext(request)
@@ -202,5 +210,5 @@ def register(request, backend, success_url=None, form_class=None,
         context[key] = callable(value) and value() or value
 
     return render_to_response(template_name,
-                              {'form': form},
+                              {'form': form, 'title': title},
                               context_instance=context)

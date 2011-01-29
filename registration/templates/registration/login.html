@@ -1,42 +1,18 @@
 {% extends "registration/base_registration.html" %}
-{% load i18n %}
-
-{% block title %}{% trans 'Log in' %}{% endblock %}
-
+{% load i18n uni_form_tags %}
+{% block title %}{% trans "User login" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block content_title %}<h2>{% trans "User login" %}</h2>{% endblock %}
 {% block content %}
-	<h2>{% trans 'Log in' %}</h2>
-
-	<form action="." method="post">{% csrf_token %}
-
-		{% if form.hidden_fields %}
-			{% for item in form.hidden_fields %}
-				{{ item }}
-			{% endfor %}
-		{% endif %}
-
-		{% if form.non_field_errors %}
-			<p class="form-error">
-				{% for error in form.non_field_errors %}
-					<span class="form-error-msg">{{ error }}</span>
-				{% endfor %}
-			</p>
-		{% endif %}
-
-		{% for field in form.visible_fields %}
-			<p class="form-field{% if field.field.required %} required{% endif %}">
-				<label for="id_{{ field.name }}">{{ field.label }}</label>
-				{{ field }}
-			</p>
-		{% endfor %}
-
-		<p class="form-buttons">
-			{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
-			<input type="submit" value="{% trans 'Log in' %}">
-		</p>
-	</form>
-
-	<p><a href="{% url auth_password_reset %}">{% trans 'Forgotten your password?' %}</a></p>
-
+{% if form.helper %}
+    {% with form.helper as helper %}
+        {% uni_form form helper %}
+    {% endwith %}
+{% else %}
+    {% uni_form form helper %}
+{% endif %}
+<p>{% trans "If you do not have an account, please" %} <a href="{% url registration_register %}">{% trans "click here" %}</a>.</p>
+<p>{% trans "If you do not remember your password, please" %} <a href="{% url auth_password_reset %}">{% trans "click here to have it reset." %}</a></p>
 	{% comment %}
 	<script type="text/javascript">
 		document.getElementById('id_username').focus()

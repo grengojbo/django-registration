@@ -1,3 +1,4 @@
+# -*- mode: python; coding: utf-8; -*-
 """
 Backwards-compatible URLconf for existing django-registration
 installs; this allows the standard ``include('registration.urls')`` to
